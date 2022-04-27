@@ -1,12 +1,13 @@
 import './App.css'
 import FormularioCadastro from './componentes/FormularioCadastro/FormularioCadastro'
+import { Container } from '@material-ui/core'
 
 function App() {
   return (
-    <div className="App">
+    <Container maxWidth="sm">
       <h1>Meu Formulario</h1>
       <FormularioCadastro />
-    </div>
+    </Container>
   )
 }
 
