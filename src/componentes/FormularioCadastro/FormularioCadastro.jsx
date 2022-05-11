@@ -7,6 +7,7 @@ function FormularioCadastro({aoEnviar}) {
   const [cpf, setCpf] = useState("")
   const [promocoes, setPromocoes] = useState(true)
   const [novidades, setNovidades] = useState(true)
+  const [erros, setErros] = useState({cpf:{valido: true, texto:""}})
 
   return (
     <form onSubmit={(event)=>{
@@ -22,7 +23,13 @@ function FormularioCadastro({aoEnviar}) {
       }} id='sobrenome' label='Sobrenome' variant='outlined' fullWidth margin='normal'/>
       <TextField value={cpf} onChange={(event)=>{
         setCpf(event.target.value)
-      }} id='CPF' label='CPF' variant='outlined' fullWidth margin='normal'/>
+      }}
+       onBlur={(event)=>{
+         setErros({cpf:{valido:false, texto: 'CPF inválido'}})
+       }}
+       error={!erros.cpf.valido}
+       helperText={erros.cpf.texto}
+       id='CPF' label='CPF' variant='outlined' fullWidth margin='normal'/>
       <FormControlLabel label='Promoções' control={<Switch checked={promocoes} onChange={(event)=>{
         setPromocoes(event.target.checked)
       }} color='primary' />}/>
