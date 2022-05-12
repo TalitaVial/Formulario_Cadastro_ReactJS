@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {Button, TextField, Switch, FormControlLabel} from '@material-ui/core'
 
-function FormularioCadastro({aoEnviar}) {
+function FormularioCadastro({aoEnviar, validaCPF}) {
   const [nome, setNome] = useState("")
   const [sobrenome, setSobrenome] = useState("")
   const [cpf, setCpf] = useState("")
@@ -25,7 +25,8 @@ function FormularioCadastro({aoEnviar}) {
         setCpf(event.target.value)
       }}
        onBlur={(event)=>{
-         setErros({cpf:{valido:false, texto: 'CPF inválido'}})
+         const valido = validaCPF(cpf)
+         setErros({cpf: valido})
        }}
        error={!erros.cpf.valido}
        helperText={erros.cpf.texto}
